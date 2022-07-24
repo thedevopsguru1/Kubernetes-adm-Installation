@@ -36,7 +36,7 @@ kubeadm init --apiserver-advertise-address=(Master Private IP Address here)
 ![image](https://user-images.githubusercontent.com/107158398/180663038-b5884eee-a61c-441e-b908-ec81d68e5be7.png)
  ### for example using the above picture , we will have
  ### kubeadm init --apiserver-advertise-address= 172.31.46.238
-###--pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=NumCPU 
+### --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=NumCPU 
 ## The previous command will generate a t
 
 ⬡ This will generate a token to use on the nodes in order to join the cluster
