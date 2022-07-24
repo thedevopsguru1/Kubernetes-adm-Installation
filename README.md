@@ -1,8 +1,45 @@
 # Kubernetes-adm-Installation
 # Steps 1 through 6 should be done on all Servers
 ## 1 - SSH on each Servers ( master and workers)
-## 2 - Install Docker on each server.
-https://github.com/devopstrainingschool/docker-installation
+## 2 - Install Docker on each Ubuntu server.
+```
+sudo apt-get remove docker docker-engine docker.io containerd runc
+```
+```
+ sudo apt-get update
+ ```
+ ```
+ sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+ ```
+ ### Add Docker’s official GPG key:
+ ```
+ sudo mkdir -p /etc/apt/keyrings
+ ```
+ ```
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+ ```
+ ### Use the following command to set up the repository:
+ ```
+ echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+ ```
+ ### Install Docker Engine:
+ ```
+ sudo apt-get update
+ ```
+ ```
+ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+ ```
+ 
+ 
+ 
+
+
 ## 3 - update, install apt-transport-https and curl packages
 ```
 apt-get update && sudo apt-get install -y apt-transport-https curl
