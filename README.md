@@ -81,6 +81,12 @@ kubeadm init --apiserver-advertise-address=(Master Private IP Address here) --po
  ### for example using the above picture , we will have
  ### kubeadm init --apiserver-advertise-address= 172.31.46.238
 ### --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=NumCPU 
-## The previous command will generate a t
+## The previous command will generate a 
+![image](https://user-images.githubusercontent.com/107158398/180667125-7da8c84c-4fc7-4801-a76e-d687d609b195.png)
 
-⬡ This will generate a token to use on the nodes in order to join the cluster
+### This will generate a token to use on the worker nodes in order to join the cluster
+### It will be similar to this
+![image](https://user-images.githubusercontent.com/107158398/180667182-e3544c86-ce89-4dc2-9041-55d131be7b5b.png)
+
+### copy it from the master node and paste it on all the worker nodes
+
