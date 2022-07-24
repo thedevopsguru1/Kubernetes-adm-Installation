@@ -67,8 +67,7 @@ apt-get install -y kubelet kubeadm kubectl
 ### 7- create the cluster and generate the token to join the cluster
  
 ```
-kubeadm init --apiserver-advertise-address=(Master Private IP Address here) 
---pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=NumCPU 
+kubeadm init --apiserver-advertise-address=(Master Private IP Address here) --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=NumCPU 
 ```
 ![image](https://user-images.githubusercontent.com/107158398/180663038-b5884eee-a61c-441e-b908-ec81d68e5be7.png)
  ### for example using the above picture , we will have
