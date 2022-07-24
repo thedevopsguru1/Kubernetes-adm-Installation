@@ -63,8 +63,16 @@ apt-get update
 ```
 apt-get install -y kubelet kubeadm kubectl
 ```
-# step 7 to step should be done on the Master Node only
-### 7- create the cluster and generate the token to join the cluster
+## 7 - Run these commands on all nodes
+```
+rm /etc/containerd/config.toml
+```
+```
+systemctl restart containerd
+```
+
+# step 8 to step should be done on the Master Node only
+### 8- create the cluster and generate the token to join the cluster
  
 ```
 kubeadm init --apiserver-advertise-address=(Master Private IP Address here) --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=NumCPU 
