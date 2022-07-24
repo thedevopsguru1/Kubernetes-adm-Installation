@@ -88,10 +88,10 @@ kubeadm init --apiserver-advertise-address=(Master Private IP Address here) --po
 ### It will be similar to this
 ![image](https://user-images.githubusercontent.com/107158398/180667182-e3544c86-ce89-4dc2-9041-55d131be7b5b.png)
 
-### copy it from the master node and paste it on all the worker nodes
+### 9 - copy it from the master node and paste it on all the worker nodes
 
 -------------------------------------------------------------------------------------
-### Copy this and paste it to the master node
+### 10 - Copy this and paste it to the master node
 ```
 export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
