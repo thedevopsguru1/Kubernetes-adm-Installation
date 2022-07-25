@@ -41,7 +41,7 @@ sudo apt-get install -y kubelet kubeadm kubectl
 
 ### install docker
 ```
-sudo apt-get install docker.io
+sudo apt-get install docker.io -y
 ```
 
 ### apt-mark hold is used so that these packages will not be updated/removed automatically
