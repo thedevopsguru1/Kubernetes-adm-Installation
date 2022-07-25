@@ -1,5 +1,5 @@
 Setting up three node Kubernetes cluster
-#### First of all, we should have three instances created that can connect over the public network. It doesn't matter how those instances are created, for example, #### they can either be Digital Ocean droplets or AWS EC2 instances. Linux Ubuntu 20.04
+####First of all, we should have three instances created that can connect over the public network. It doesn't matter how those instances are created, for example, they can either be Digital Ocean droplets or AWS EC2 instances. Linux Ubuntu 20.04
 
 ## 1- SSH into all the instances
 Once you are into those instances, the commands that are mentioned below should be run on all the instances
@@ -51,22 +51,25 @@ sudo apt-mark hold kubelet kubeadm kubectl
 After the above commands are successfully run on all the worker nodes. Below steps can be followed to initialize the Kubernetes cluster.
 
 # On Master Node
-### Run the below command on the node that you want to make the leader node. Please make sure you replace the correct IP of the node with IP-of-Node
+### Run the below command on the node that you want to make the leader node. Please make sure you replace the correct IP of the node with Private IP-of-Node
 ```
-export MASTER_IP=<IP-of-Node>
+export MASTER_IP=<Private-IP-of-Node>
 ```
 #### Put the Private ip Adress
 ![image](https://user-images.githubusercontent.com/107158398/180680492-c353019b-d75a-4518-9e64-9914e3471563.png)
 ```
 kubeadm init --apiserver-advertise-address=${MASTER_IP} --pod-network-cidr=10.244.0.0/16
 ```
-# Join worker nodes to the Master node
-### Once the command kubeadm init is completed on the Master node, below we would get a command like below in the output of kubeadm init that can be run on worker nodes to make them join the leader node.
+## the output should be similar to this
+![image](https://user-images.githubusercontent.com/107158398/180681465-c0013222-a2e0-4594-b8ff-78243b22d7a2.png)
 
-kubeadm join 206.189.134.39:6443 --token dxxfoj.a2zzwbfrjejzir4h \
-    --discovery-token-ca-cert-hash sha256:110e853989c2401b1e54aef6e8ff0393e05f18d531a75ed107cf6c05ca4170eb
-### Install CNI plugin
-#### The below command can be run on the leader node to install the CNI plugin
+# Join worker nodes to the Master node
+### Once the command kubeadm init is completed on the Master node, below we would get a command like below in the output of kubeadm init that can be run on worker nodes to make them join the master node.
+
+![image](https://user-images.githubusercontent.com/107158398/180681523-06a01af8-0ad9-43bf-93b9-89f4bf2c6291.png)
+
+# Install CNI plugin
+### The below command can be run on the leader node to install the CNI plugin
 ```
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
