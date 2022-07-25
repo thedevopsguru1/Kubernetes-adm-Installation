@@ -73,7 +73,7 @@ kubeadm init --apiserver-advertise-address=${MASTER_IP} --pod-network-cidr=10.24
 export KUBECONFIG=/etc/kubernetes/admin.conf
  ```
 # Join worker nodes to the Master node
-### Once the command kubeadm init is completed on the Master node, below we would get a command like below in the output of kubeadm init that can be run on worker nodes to make them join the master node. Copy and paste on all worker nodes
+### Once the command kubeadm init is completed on the Master node, below we would get a command like below in the output of kubeadm init that can be run on worker nodes to make them join the master node. Copy and paste it on all worker nodes. Also make sure yur save that token somewhere save
 
 ![image](https://user-images.githubusercontent.com/107158398/180681523-06a01af8-0ad9-43bf-93b9-89f4bf2c6291.png)
 
