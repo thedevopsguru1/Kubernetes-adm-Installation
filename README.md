@@ -77,7 +77,7 @@ kubeadm init --apiserver-advertise-address=${MASTER_IP} --pod-network-cidr=10.24
 ![image](https://user-images.githubusercontent.com/107158398/180835327-eb520b39-4df1-4754-92b6-53f3790694c7.png)
 #### Run this command to setup kubeconfig as a root user
 ```
- export KUBECONFIG=/etc/kubernetes/admin.conf
+export KUBECONFIG=/etc/kubernetes/admin.conf
  ```
 # Install CNI plugin on the Master node
 ### The below command can be run on the leader node to install the CNI plugin
