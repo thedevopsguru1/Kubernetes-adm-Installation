@@ -83,7 +83,7 @@ kubectl get nodes
 ```
 #### The output should look like this:
 
-``
+```
 kubectl get pod -A
 ```
 #### The Above command output should look like this:
