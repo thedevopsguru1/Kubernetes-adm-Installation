@@ -97,6 +97,20 @@ kubectl get pod -A
 
 
 
+
+## If you want to add another server to the cluster later, you can run these commands:
+### - List all the tokens
+```
+kubeadm token list
+```
+### - create a token
+```
+kubeadm token create --print-join-command
+```
+### Copy the output of the previous command and paste it
+
+
+
 ## kubectl run my-app --image=devopstrainingschool/java-maven-jenkins --port=8080
 ### kubectl expose pod my-app --type=NodePort --port=8080 --target-port=8080
 ### kubectl get svc -A
