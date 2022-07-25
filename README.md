@@ -78,10 +78,10 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 
 
 
-kubectl run my-app --image=devopstrainingschool/java-maven-jenkins --port=8080
-kubectl expose pod my-app --type=NodePort --port=8080 --target-port=8080
-kubectl get svc -A
-http://3.139.76.41:30540/
+## kubectl run my-app --image=devopstrainingschool/java-maven-jenkins --port=8080
+### kubectl expose pod my-app --type=NodePort --port=8080 --target-port=8080
+### kubectl get svc -A
+### http://3.139.76.41:30540/
 
 
 
