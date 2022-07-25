@@ -57,6 +57,8 @@ export MASTER_IP=<Private-IP-of-Node>
 ```
 #### Put the Private ip Adress
 ![image](https://user-images.githubusercontent.com/107158398/180680492-c353019b-d75a-4518-9e64-9914e3471563.png)
+
+## Let us Install our cluster
 ```
 kubeadm init --apiserver-advertise-address=${MASTER_IP} --pod-network-cidr=10.244.0.0/16
 ```
