@@ -75,6 +75,18 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 ```
 #### Setting up Kubeconfig file
 #### After successful completion of kubeadm init command, like we got the kubeadm join command, we would also get details about how we can set up kubeconfig file.
+![image](https://user-images.githubusercontent.com/107158398/180835327-eb520b39-4df1-4754-92b6-53f3790694c7.png)
+
+### Let test and make sure all good.
+```
+kubectl get nodes
+```
+#### The output should look like this:
+
+``
+kubectl get pod -A
+```
+#### The Above command output should look like this:
 
 
 
