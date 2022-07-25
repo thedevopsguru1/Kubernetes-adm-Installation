@@ -65,11 +65,7 @@ kubeadm init --apiserver-advertise-address=${MASTER_IP} --pod-network-cidr=10.24
 ## the output should be similar to this
 ![image](https://user-images.githubusercontent.com/107158398/180681465-c0013222-a2e0-4594-b8ff-78243b22d7a2.png)
 
-# Install CNI plugin on the Master node
-### The below command can be run on the leader node to install the CNI plugin
-```
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-```
+
 # Join worker nodes to the Master node
 ### Once the command kubeadm init is completed on the Master node, below we would get a command like below in the output of kubeadm init that can be run on worker nodes to make them join the master node. Copy and paste on all worker nodes
 
@@ -83,7 +79,11 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 ```
  export KUBECONFIG=/etc/kubernetes/admin.conf
  ```
-
+# Install CNI plugin on the Master node
+### The below command can be run on the leader node to install the CNI plugin
+```
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
 ### Let test and make sure all good.
 ```
 kubectl get nodes
