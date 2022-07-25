@@ -1,99 +1,74 @@
-# Kubernetes-adm-Installation
-# Steps 1 through 6 should be done on all Servers
-## 1 - SSH on each Servers ( master and workers)
-## 2 - Install Docker on each Ubuntu server.
-```
-sudo apt-get remove docker docker-engine docker.io containerd runc
-```
-```
- sudo apt-get update
- ```
- ```
- sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
- ```
- ### Add Docker’s official GPG key:
- ```
- sudo mkdir -p /etc/apt/keyrings
- ```
- ```
- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
- ```
- ### Use the following command to set up the repository:
- ```
- echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
- ```
- ### Install Docker Engine:
- ```
- sudo apt-get update
- ```
- ```
- sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
- ```
- 
- 
- 
+Setting up three node Kubernetes cluster
+#### First of all, we should have three instances created that can connect over the public network. It doesn't matter how those instances are created, for example, #### they can either be Digital Ocean droplets or AWS EC2 instances. Linux Ubuntu 20.04
 
+## 1- SSH into all the instances
+Once you are into those instances, the commands that are mentioned below should be run on all the instances
 
-## 3 - update, install apt-transport-https and curl packages
+## Commands to run on all the nodes
+### Get sudo working
 ```
-apt-get update && sudo apt-get install -y apt-transport-https curl
+sudo -i
 ```
-## 4 -  Download and add a trusted key
+### update packages and their version
+```
+sudo apt-get update && sudo apt-get upgrade -y
+```
+
+### install curl and apt-transport-https
+```
+sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+```
+
+### add key to verify releases
 ```
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 ```
+
+### add kubernetes apt repo
 ```
 cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 ```
 
-## 5 - update the system again for a second time
+### install kubelet, kubeadm and kubectl
 ```
-apt-get update
-```
-
-##  6 -  Install kubelet, kubeadm and kubectl
-```
-apt-get install -y kubelet kubeadm kubectl
-```
-## 7 - Run these commands on all nodes
-```
-rm /etc/containerd/config.toml
+sudo apt-get update
 ```
 ```
-systemctl restart containerd
+sudo apt-get install -y kubelet kubeadm kubectl
 ```
 
-# step 8 to step should be done on the Master Node only
-### 8- create the cluster and generate the token to join the cluster
- 
+### install docker
 ```
-kubeadm init --apiserver-advertise-address=(Master Private IP Address here) --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=NumCPU 
-```
-![image](https://user-images.githubusercontent.com/107158398/180663038-b5884eee-a61c-441e-b908-ec81d68e5be7.png)
- ##### for example using the above picture , we will have
- ##### kubeadm init --apiserver-advertise-address= 172.31.46.238
-##### --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=NumCPU 
-##### The previous command will generate a 
-![image](https://user-images.githubusercontent.com/107158398/180667125-7da8c84c-4fc7-4801-a76e-d687d609b195.png)
-
-#### This will generate a token to use on the worker nodes in order to join the cluster
-#### It will be similar to this
-![image](https://user-images.githubusercontent.com/107158398/180667182-e3544c86-ce89-4dc2-9041-55d131be7b5b.png)
-
-### 9 - copy it from the master node and paste it on all the worker nodes
-![image](https://user-images.githubusercontent.com/107158398/180667182-e3544c86-ce89-4dc2-9041-55d131be7b5b.png)
--------------------------------------------------------------------------------------
-### 10 - Copy this and paste it to the master node
-```
-export KUBECONFIG=/etc/kubernetes/admin.conf
+sudo apt-get install docker.io
 ```
 
+### apt-mark hold is used so that these packages will not be updated/removed automatically
+```
+sudo apt-mark hold kubelet kubeadm kubectl
+```
+After the above commands are successfully run on all the worker nodes. Below steps can be followed to initialize the Kubernetes cluster.
 
+# On Master Node
+### Run the below command on the node that you want to make the leader node. Please make sure you replace the correct IP of the node with IP-of-Node
+```
+export MASTER_IP=<IP-of-Node>
+```
+#### Put the Private ip Adress
+![image](https://user-images.githubusercontent.com/107158398/180680492-c353019b-d75a-4518-9e64-9914e3471563.png)
+```
+kubeadm init --apiserver-advertise-address=${MASTER_IP} --pod-network-cidr=10.244.0.0/16
+```
+### Join worker nodes to the Leader node
+### Once the command kubeadm init is completed on the leader node, below we would get a command like below in the output of kubeadm init that can be run on worker nodes to make them join the leader node.
+
+kubeadm join 206.189.134.39:6443 --token dxxfoj.a2zzwbfrjejzir4h \
+    --discovery-token-ca-cert-hash sha256:110e853989c2401b1e54aef6e8ff0393e05f18d531a75ed107cf6c05ca4170eb
+### Install CNI plugin
+#### The below command can be run on the leader node to install the CNI plugin
+```
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
+#### Setting up Kubeconfig file
+#### After successful completion of kubeadm init command, like we got the kubeadm join command, we would also get details about how we can set up kubeconfig file.
