@@ -60,8 +60,8 @@ export MASTER_IP=<IP-of-Node>
 ```
 kubeadm init --apiserver-advertise-address=${MASTER_IP} --pod-network-cidr=10.244.0.0/16
 ```
-### Join worker nodes to the Leader node
-### Once the command kubeadm init is completed on the leader node, below we would get a command like below in the output of kubeadm init that can be run on worker nodes to make them join the leader node.
+# Join worker nodes to the Master node
+### Once the command kubeadm init is completed on the Master node, below we would get a command like below in the output of kubeadm init that can be run on worker nodes to make them join the leader node.
 
 kubeadm join 206.189.134.39:6443 --token dxxfoj.a2zzwbfrjejzir4h \
     --discovery-token-ca-cert-hash sha256:110e853989c2401b1e54aef6e8ff0393e05f18d531a75ed107cf6c05ca4170eb
