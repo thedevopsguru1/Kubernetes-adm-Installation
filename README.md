@@ -1,4 +1,4 @@
-Setting up three node Kubernetes cluster
+# Setting up three node Kubernetes cluster
 ####First of all, we should have three instances created that can connect over the public network. It doesn't matter how those instances are created, for example, they can either be Digital Ocean droplets or AWS EC2 instances. Linux Ubuntu 20.04
 
 ## 1- SSH into all the instances
