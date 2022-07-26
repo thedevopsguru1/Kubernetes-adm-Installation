@@ -43,15 +43,6 @@ sudo apt-get install -y kubelet kubeadm kubectl
 ```
 sudo apt-get install docker.io -y
 ```
-### If you have docker error like this one
-![image](https://user-images.githubusercontent.com/107158398/180901753-dca22550-2a72-4223-87ff-8f97fafa08c3.png)
-### run these commands:
-```
-rm /etc/containerd/config.toml
-```
-```
-systemctl restart containerd
-```
 
 ### apt-mark hold is used so that these packages will not be updated/removed automatically
 ```
@@ -73,6 +64,15 @@ kubeadm init --apiserver-advertise-address=${MASTER_IP} --pod-network-cidr=10.24
 ```
 ## the output should be similar to this
 ![image](https://user-images.githubusercontent.com/107158398/180681465-c0013222-a2e0-4594-b8ff-78243b22d7a2.png)
+### If you have docker error like this one
+![image](https://user-images.githubusercontent.com/107158398/180901753-dca22550-2a72-4223-87ff-8f97fafa08c3.png)
+### run these commands:
+```
+rm /etc/containerd/config.toml
+```
+```
+systemctl restart containerd
+```
 
 #### Setting up Kubeconfig file
 #### After successful completion of kubeadm init command, like we got the kubeadm join command, we would also get details about how we can set up kubeconfig file.
