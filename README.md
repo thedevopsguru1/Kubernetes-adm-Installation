@@ -99,7 +99,8 @@ systemctl start docker
 ```
 docker version
 ```
-
+### run the join command again
+![image](https://user-images.githubusercontent.com/107158398/180681523-06a01af8-0ad9-43bf-93b9-89f4bf2c6291.png)
 
 
 
