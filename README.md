@@ -43,6 +43,15 @@ sudo apt-get install -y kubelet kubeadm kubectl
 ```
 sudo apt-get install docker.io -y
 ```
+### If you have docker error like this one
+![image](https://user-images.githubusercontent.com/107158398/180901753-dca22550-2a72-4223-87ff-8f97fafa08c3.png)
+### run these commands:
+```
+rm /etc/containerd/config.toml
+```
+```
+systemctl restart containerd
+```
 
 ### apt-mark hold is used so that these packages will not be updated/removed automatically
 ```
@@ -76,6 +85,21 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 ### Once the command kubeadm init is completed on the Master node, below we would get a command like below in the output of kubeadm init that can be run on worker nodes to make them join the master node. Copy and paste it on all worker nodes. Also make sure yur save that token somewhere save
 
 ![image](https://user-images.githubusercontent.com/107158398/180681523-06a01af8-0ad9-43bf-93b9-89f4bf2c6291.png)
+### if you run into an issue while running the join command,
+![image](https://user-images.githubusercontent.com/107158398/180902268-71bf3b06-c5aa-494b-a558-1dc9a8fa5306.png)
+
+### please run these commands before rerun join command:
+```
+sudo systemctl unmask docker
+```
+```
+systemctl start docker
+```
+### make sure docker is running 
+```
+docker version
+```
+
 
 
 
