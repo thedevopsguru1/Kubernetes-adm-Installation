@@ -68,7 +68,7 @@ kubeadm init --apiserver-advertise-address=${MASTER_IP} --pod-network-cidr=10.24
 ![image](https://user-images.githubusercontent.com/107158398/180901753-dca22550-2a72-4223-87ff-8f97fafa08c3.png)
 ### run these commands:
 ```
-rm /etc/containerd/config.toml
+rm -rf /etc/containerd/config.toml
 ```
 ```
 systemctl restart containerd
