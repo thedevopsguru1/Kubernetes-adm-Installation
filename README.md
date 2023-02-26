@@ -21,6 +21,9 @@ sudo apt-get update && sudo apt-get install -y apt-transport-https curl
 
 ### add key to verify releases
 ```
+sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+```
+```
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 ```
 
