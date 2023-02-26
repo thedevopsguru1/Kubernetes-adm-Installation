@@ -26,6 +26,8 @@ sudo apt-get update && sudo apt-get install -y apt-transport-https curl
 ```
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 ```
+#### You should see OK outpot
+![image](https://user-images.githubusercontent.com/107158398/221389312-d536b41a-7167-49d1-8262-393ee8697c81.png)
 
 ### add kubernetes apt repo
 ```
