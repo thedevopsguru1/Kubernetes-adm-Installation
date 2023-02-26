@@ -134,11 +134,18 @@ kubeadm token create --print-join-command
 ```
 ### Copy the output of the previous command and paste it
 
-
-
-## kubectl run my-app --image=devopstrainingschool/java-maven-jenkins --port=8080
-### kubectl expose pod my-app --type=NodePort --port=8080 --target-port=8080
-### kubectl get svc -A
+## To run a new docker container , run this:
+```
+kubectl run my-app --image=devopstrainingschool/java-maven-jenkins --port=8080
+```
+## To expose ( or access) our pod , run this command:
+```
+kubectl expose pod my-app --type=NodePort --port=8080 --target-port=8080
+```
+## Check if the service is working  
+```
+kubectl get svc -A
+```
 ### http://3.139.76.41:30540/
 
 
