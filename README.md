@@ -1,5 +1,5 @@
 # Setting up three node Kubernetes cluster
-## First of all, we should have three instances created that can connect over the public network. It doesn't matter how those instances are created, for example, they can either be Digital Ocean droplets or AWS EC2 instances. Linux Ubuntu 20.04
+## First of all, we should have three instances created that can connect over the public network. It doesn't matter how those instances are created, for example, they can either be Digital Ocean droplets or AWS EC2 instances. Linux Ubuntu 18.04
 
 ## 1- SSH into all the instances
 Once you are into those instances, the commands that are mentioned below should be run on all the instances
@@ -20,9 +20,7 @@ sudo apt-get update && sudo apt-get install -y apt-transport-https curl
 ```
 
 ### add key to verify releases
-```
-sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-```
+
 ```
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 ```
